@@ -1,12 +1,6 @@
 # 🌊 AI + Blockchain Powered MRV Platform for Mangrove & Blue Carbon Projects
 
-A full-stack MRV system that digitizes **Measurement, Reporting, and Verification (MRV)** using:
-
-📌 **Drones** 📌 **Machine Learning (NDVI, canopy & biomass)**  
-📌 **Smart Contracts on Polygon** 📌 **IPFS for evidence storage**  
-📌 **Mobile Field App + Web Verification Dashboard**
-
-This platform prevents **fake or duplicated carbon credits** and builds **auditable, tamper-proof community-driven carbon accounting**.
+A full-stack MRV system that digitizes Measurement, Reporting, and Verification (MRV) using drones, machine learning (for NDVI, canopy and biomass estimation), smart contracts on the Polygon blockchain, IPFS for evidence storage, and a combined mobile field application with a web-based verification dashboard, ensuring tamper-proof, auditable, and transparent carbon accounting while preventing fake or duplicated carbon credits.
 
 ---
 
