@@ -43,94 +43,154 @@ A full-stack MRV system that digitizes Measurement, Reporting, and Verification 
 
 ---
 
-### 📱 React Native Mobile App
-- Login & secure identity  
-- Draw project boundary polygon on map  
-- Upload drone images + registration documents  
-- Upload sensor logs (pH, salinity, temp, humidity)  
-- Trigger MRV analysis  
-- View MRV status & CID trail  
+# 📱 React Native Mobile App (Field Data Collection)
 
-### 💻 Web Dashboard (Community/NCCR Head)
-- Project approval & verification  
-- MRV review & acceptance  
-- Audit CIDs & published evidence  
-- Issue verifiable carbon credits  
-- Download official MRV & certificate report  
+The React Native mobile application is designed for field officers, surveyors, and project developers working on mangrove and blue carbon restoration activities. It enables them to efficiently collect, upload, and verify ecological and geospatial data directly from the field.
 
-### 🌐 Node.js Backend
-- REST API for mobile & web
-- Upload artifacts to IPFS  
-- Trigger ML models (FastAPI)  
-- Manage carbon certificate logic  
-- Interact with smart contracts  
+### 🔧 Features
+- **Secure Login & Identity**  
+  Ensures authenticated access to project data using encrypted credentials.
+  
+- **Boundary Drawing on Map**  
+  Officers can draw polygon boundaries to define the geographical extent of mangrove plantation or restoration zones.
 
-### 🤖 FastAPI Machine Learning Server
-- NDVI & vegetation indices  
-- Canopy segmentation & classification  
-- Tree counting & density estimation  
-- Biomass and carbon sequestration calculation  
+- **Drone Data Upload**  
+  The app allows uploading high-resolution drone imagery and registration documents as project evidence.
 
-### 🗄 IPFS Evidence Storage
-- GeoJSON boundaries  
-- Drone imagery  
-- NDVI rasters & classified layers  
-- Tree detection maps  
-- Sensor logs  
-- Registration & MRV JSON  
+- **Sensor Data Capture**  
+  Environmental measurements such as **pH, salinity, temperature, and humidity** can be uploaded along with geolocation, ensuring credible ecological assessment.
 
-### ⛓ Polygon Smart Contract
+- **Trigger MRV Analysis**  
+  Users can submit field data and request automatic ML-based MRV processing.
+
+- **Track MRV & CID Trail**  
+  Officers can monitor MRV status, review stored records, and access IPFS Content IDs (CIDs) linked to blockchain transactions.
+
+---
+
+# 💻 Web Dashboard (Community Head / NCCR Head)
+
+The web dashboard acts as a governance and verification interface for government officials, community heads, and authorized verifiers such as **NCCR (National Centre for Coastal Research)**.
+
+### ⚡ Key Capabilities
+- **Project Approval & Verification**  
+  Review project details, validate uploaded evidence, and approve or reject applications.
+
+- **MRV Review & Acceptance**  
+  Evaluate ML-generated outputs (NDVI, canopy cover, biomass estimates, etc.) before certification.
+
+- **Audit IPFS CIDs**  
+  Visibility into every stored artifact—drone images, GeoJSON, MRV JSON, evidence proofs, and more.
+
+- **Issue Carbon Credits**  
+  Generate blockchain-backed carbon credits once MRV is verified.
+
+- **Download Official Reports**  
+  Export verified MRV reports and blockchain-certified carbon credit documents.
+
+---
+
+# 🌐 Node.js Backend (Orchestration Layer)
+
+The backend serves as the bridge between frontend clients (web/mobile), the machine learning server, IPFS storage, and blockchain smart contracts.
+
+### 🔗 Responsibilities
+- **REST API for Mobile & Web**  
+  Centralized endpoints ensure secure and structured data flow.
+
+- **Upload Evidence to IPFS**  
+  Stores all files, logs, and processed outputs on distributed storage for immutability.
+
+- **Trigger Machine Learning Workflow**  
+  Sends drone and sensor data to FastAPI for NDVI, canopy, and biomass computation.
+
+- **Carbon Certificate Logic**  
+  Generates and manages verified MRV outputs before writing to blockchain.
+
+- **Smart Contract Communication**  
+  Publishes registration and MRV CID hashes to the Polygon network.
+
+---
+
+# 🤖 FastAPI Machine Learning Server
+
+The ML engine performs advanced geospatial analysis and interprets ecological data to quantify mangrove carbon and biomass.
+
+### 🧪 Core ML Functions
+- **NDVI & Vegetation Indices**  
+  Derives health and density metrics from drone imagery.
+
+- **Canopy Classification**  
+  Segments mangrove canopy areas and classifies species if required.
+
+- **Tree Counting & Density**  
+  Identifies tree clusters using object detection and spatial mapping models.
+
+- **Biomass & Carbon Estimation**  
+  Converts morphological characteristics into carbon sequestration estimates using scientific models.
+
+---
+
+# 🗄 IPFS Evidence Storage
+
+All MRV-related assets are stored on **IPFS**, providing distributed integrity, transparency, and traceability.
+
+### 📂 Stored Artifacts
+- GeoJSON Project Boundaries  
+- Raw Drone Imagery  
+- NDVI Rasters & Classified Segments  
+- Tree Detection Maps  
+- Environmental Sensor Logs  
+- `registration.json` & `mrv.json` files  
+- Blockchain-backed Carbon Certificate (PDF)
+
+Every artifact receives a unique **CID (Content Identifier)** linked to the blockchain.
+
+---
+
+# ⛓ Polygon Smart Contract (MRV Registry)
+
+Smart contracts ensure traceability, immutability, and authenticity for carbon credit issuance.
+
+### 💼 Contract Functions
 - `registerProject()`  
+  Stores initial registration metadata & CID references.
+
 - `updateMRV()`  
+  Publishes new MRV assessment as immutable blockchain history.
+
+### 🔒 Guarantees
 - Immutable MRV history  
-- Public traceability via CIDs  
+- Publicly verifiable carbon accounting  
+- Tamper-proof data via CID hashing  
 
 ---
 
 # 📊 Data Model
 
 ### 🔗 On-Chain Metadata
-- `projectId`  
-- `registrationCID`  
-- `mrvCID`  
-- `projectOwner`  
-- `boundaryHash`  
-- `verificationStatus`  
-- `timestamps`  
+Stored as lightweight hashes:
+- `projectId`
+- `registrationCID`
+- `mrvCID`
+- `projectOwner`
+- `boundaryHash`
+- `verificationStatus`
+- `timestamps`
 
-### 📦 Off-Chain (Stored on IPFS)
-- Drone images  
-- GeoJSON boundary  
-- NDVI + canopy maps  
-- Tree detection maps  
-- Sensor logs  
-- `registration.json` & `mrv.json`  
-- Carbon certificate (PDF)
-
----
-
-# ⚙️ Configure Environment  
-Configure API URLs, contract address, and IPFS gateway in environment files for both the backend and frontend.
-
-
-# 🔄 Usage Flow
-
-1. Field officer logs in via mobile app  
-2. Creates a new project and draws the boundary on the map  
-3. Uploads drone images and registration documents  
-4. Backend stores files on IPFS and registers the project on-chain  
-5. For MRV rounds, the officer uploads new drone data and triggers MRV  
-6. ML server computes NDVI, canopy coverage, tree count, and carbon estimate  
-7. Backend writes `mrv.json` to IPFS and updates the smart contract  
-8. Verifiers and stakeholders trace every MRV record and underlying data via CIDs  
+### 📦 Off-Chain (IPFS Artifacts)
+- Drone Images  
+- GeoJSON Boundary  
+- NDVI & Canopy Maps  
+- Tree Detection Maps  
+- Sensor Readings  
+- `registration.json`, `mrv.json`  
+- Carbon Certificate PDF  
 
 ---
 
-# 🎯 Key Benefits
+# ⚙️ Environment Configuration
 
-- End-to-end digital MRV for blue carbon projects  
-- Tamper-proof, transparent registry using blockchain  
-- Verifiable linkage from carbon credits to raw drone and sensor data  
-- Mobile-first workflow designed for field teams  
-- Modular design (models, blockchain, or frontend can be swapped or extended)  
+Configure essential runtime variables in both **backend & frontend `.env`**:
+
 
