@@ -25,7 +25,10 @@ This platform prevents **fake or duplicated carbon credits** and builds **audita
 - Manual, slow and expensive MRV  
 - Easily manipulated reports and duplicate carbon credits  
 - No verifiable link to raw drone & sensor evidence  
-- Lack of transparency for communities & government (NCCR, State agencies)  
+- Lack of transparency for communities & government (NCCR, State agencies)
+
+    <img width="707" height="543" alt="image" src="https://github.com/user-attachments/assets/47112693-d9b5-470b-8a70-936f02073a60" />
+
 
 ---
 
